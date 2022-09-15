@@ -21,13 +21,16 @@ const std::string &InputParser::getCmdOption(const std::string &option) const {
 }
 
 /// \brief Check if a command line option exists
-/// \param optionSmall The SHORT option to check for
 /// \param optionFull The FULL option to check for
+/// \param optionSmall The SHORT option to check for
 /// \return True if the option exists, otherwise false
-bool InputParser::cmdOptionExists(const std::string &optionSmall,
-								  const std::string &optionFull) const {
+bool InputParser::cmdOptionExists(const std::string &optionFull,
+								  const std::string &optionSmall) const {
 	bool exists = false;
 	exists = std::find(tokens.begin(), tokens.end(), optionFull) != tokens.end();
+
+	if(optionSmall.empty()) return exists;
+
 	exists |= std::find(tokens.begin(), tokens.end(), optionSmall) != tokens.end();
 	return exists;
 }

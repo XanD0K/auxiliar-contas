@@ -17,6 +17,6 @@ public:
 
 	[[nodiscard]] const std::string &getCmdOption(const std::string &option) const;
 
-	[[nodiscard]] bool cmdOptionExists(const std::string &optionSmall,
-						 const std::string &optionFull) const;
+	[[nodiscard]] bool cmdOptionExists(const std::string &optionFull,
+									   const std::string &optionSmall = "") const;
 };
