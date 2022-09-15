@@ -1,12 +1,12 @@
 #include "input_parser.hpp"
 #include <iostream>
 
-/// \brief constants for command line options and program version
+/// \brief constants for command line options and program VERSION
 namespace constants {
-	constexpr auto help = "--help";
-	constexpr auto help_short = "-h";
-	constexpr auto version = "--version";
-	constexpr auto version_short = "-v";
+	constexpr auto HELP = "--HELP";
+	constexpr auto HELP_SHORT = "-h";
+	constexpr auto VERSION = "--VERSION";
+	constexpr auto VERSION_SHORT = "-v";
 
 	constexpr uint VERSION_MAJOR = 0;
 	constexpr uint VERSION_MINOR = 1;
@@ -29,17 +29,17 @@ int main(int argc, char *argv[]) {
 
 	InputParser input(argc, argv);
 
-	if(input.cmdOptionExists(help_short, help)) {
+	if(input.cmdOptionExists(HELP_SHORT, HELP)) {
 		std::cout << "Aux Bills Help" << '\n';
 		std::cout << "Usage: aux-bill [options]" << '\n';
 		std::cout << "Options:" << '\n';
-		std::cout << "  -h, --help\t\t\tShow this help message and exit" << '\n';
-		std::cout << "  -v, --version\t\t\tShow program's version number and exit"
+		std::cout << "  -h, --HELP\t\t\tShow this HELP message and exit" << '\n';
+		std::cout << "  -v, --VERSION\t\t\tShow program's VERSION number and exit"
 				  << '\n';
 		exit(EXIT_SUCCESS);
 	}
 
-	if(input.cmdOptionExists(version_short, version)) {
+	if(input.cmdOptionExists(VERSION_SHORT, VERSION)) {
 		std::cout << "Aux Bills Version: " << VERSION_MAJOR << "." << VERSION_MINOR << "."
 				  << VERSION_PATCH << '\n';
 		exit(EXIT_SUCCESS);
