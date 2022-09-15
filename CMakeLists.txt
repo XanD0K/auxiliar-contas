@@ -3,5 +3,5 @@ project(auxiliar_contas)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(auxiliar_contas main.cpp)
+add_executable(auxiliar_contas main.cpp input_parser.cpp input_parser.hpp)
 
