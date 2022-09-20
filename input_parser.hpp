@@ -10,7 +10,7 @@
 
 /// \brief Class to parse command line arguments
 class InputParser {
-	std::vector<std::string> tokens{};
+	std::vector<std::string> tokens{10};
 
 public:
 	InputParser(int &argc, char **argv);
