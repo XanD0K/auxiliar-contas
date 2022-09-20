@@ -3,10 +3,10 @@
 
 /// \brief constants for command line options and program VERSION
 namespace constants {
-	constexpr auto HELP = "--help";
-	constexpr auto HELP_SHORT = "-h";
-	constexpr auto VERSION = "--version";
-	constexpr auto VERSION_SHORT = "-v";
+	const std::string HELP = "--help";
+	const std::string HELP_SHORT = "-h";
+	const std::string VERSION = "--version";
+	const std::string VERSION_SHORT = "-v";
 
 	constexpr uint VERSION_MAJOR = 0;
 	constexpr uint VERSION_MINOR = 1;
@@ -23,13 +23,20 @@ int main(int argc, char *argv[]) {
 	std::cout << "Hello, World!" << '\n';
 
 	std::cout << "argc: " << argc << '\n';
-	for(int i = 0; i < argc; i++) {
+	for(int i = 0; i < argc; ++i) {
 		std::cout << "argv num: " << i << " - " << argv[i] << '\n';
 	}
 
-	InputParser input(argc, argv);
+	bool help = false;
 
-	if(input.cmdOptionExists(HELP, HELP_SHORT)) {
+	for(int i = 0; i < argc; ++i) {
+		if(argv[i] == HELP || argv[i] == HELP_SHORT) {
+			help = true;
+			break;
+		}
+	}
+
+	if(help) {
 		std::cout << "Aux Bills Help" << '\n';
 		std::cout << "Usage: aux-bill [options]" << '\n';
 		std::cout << "Options:" << '\n';
@@ -39,11 +46,6 @@ int main(int argc, char *argv[]) {
 		exit(EXIT_SUCCESS);
 	}
 
-	if(input.cmdOptionExists(VERSION, VERSION_SHORT)) {
-		std::cout << "Aux Bills Version: " << VERSION_MAJOR << "." << VERSION_MINOR << "."
-				  << VERSION_PATCH << '\n';
-		exit(EXIT_SUCCESS);
-	}
 
 	exit(EXIT_SUCCESS);
 }
