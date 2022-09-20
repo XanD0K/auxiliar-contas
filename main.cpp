@@ -11,6 +11,13 @@ namespace constants {
 	constexpr uint VERSION_MAJOR = 0;
 	constexpr uint VERSION_MINOR = 1;
 	constexpr uint VERSION_PATCH = 0;
+
+	const int flag_none = 1;
+	const int flag_help = 1 << 1;
+	const int flag_version = 1 << 2;
+	const int flag_error = 1 << 3;
+	const int flag_invalid = 1 << 4;
+
 }// namespace constants
 
 struct Bill {
@@ -28,10 +35,20 @@ int main(int argc, char *argv[]) {
 	}
 
 	bool help = false;
+	int flag = 0;
+
 
 	for(int i = 0; i < argc; ++i) {
 		if(argv[i] == HELP || argv[i] == HELP_SHORT) {
 			help = true;
+			flag |= flag_help;
+			break;
+		}
+	}
+
+	for(int i = 0; i < argc; ++i) {
+		if(argv[i] == VERSION || argv[i] == VERSION_SHORT) {
+			flag |= flag_version;
 			break;
 		}
 	}
@@ -43,6 +60,12 @@ int main(int argc, char *argv[]) {
 		std::cout << "  -h, --help\t\t\tShow this HELP message and exit" << '\n';
 		std::cout << "  -v, --version\t\t\tShow program's VERSION number and exit"
 				  << '\n';
+		exit(EXIT_SUCCESS);
+	}
+
+	if(flag & flag_version) {
+		std::cout << "Aux Bills Version " << VERSION_MAJOR << '.' << VERSION_MINOR
+				  << '.' << VERSION_PATCH << '\n';
 		exit(EXIT_SUCCESS);
 	}
 
